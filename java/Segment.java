@@ -1,4 +1,4 @@
-import static java.lang.*;
+import java.lang.*;
 
 public class Segment
 {
@@ -35,10 +35,10 @@ public class Segment
     Droite d = new Droite(p1, p2);
 
 	  return ( d.appartient(p) == 0
-			  && p.getX() <= max(p1.getX(), p2.getX()) 
-			  && p.getX() >= min(p1.getX(), p2.getX())
-			  && p.getY() <= max(p1.getY(), p2.getY()) 
-			  && p.getY() >= min(p1.getY(), p2.getY()) );
+			  && p.getX() <= Math.max(p1.getX(), p2.getX()) 
+			  && p.getX() >= Math.min(p1.getX(), p2.getX())
+			  && p.getY() <= Math.max(p1.getY(), p2.getY()) 
+			  && p.getY() >= Math.min(p1.getY(), p2.getY()) );
   }
 
   public Point intersection(Segment s) //Retourne le point d'intersection s'il existe

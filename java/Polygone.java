@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Polygone
 {
   protected ArrayList<Point> sommets;
@@ -31,7 +33,7 @@ public class Polygone
 
   public Point getPoint(int i)
   {
-    return sommets[i];
+    return sommets.get(i);
   }
 
 
@@ -70,11 +72,11 @@ public class Polygone
     
     for(i = 0; i < sommets.size() - 1; ++i)
     {
-      s += "p" + i + " : " + sommets[i].toString() + ", ";
+      s += "p" + i + " : " + getPoint(i).toString() + ", ";
     }
 
     ++i;
-    s += "p" + i + " : " + sommets[i].toString() + ";\n";
+    s += "p" + i + " : " + getPoint(i).toString() + ";\n";
 
     return s;
   }

@@ -13,9 +13,9 @@ public class Droite
 
 	public Droite(Point p1, Point p2) //En utilisant l'equation reduite y = ax + c, on obtient l'equation cartesienne
 	{								  // ax + by + c = 0, b vaut -1, a est le coefficient directeur
-		a = ( p2.getY() - p1.getY() )/( p2.getX() - p1.getX() );
+		/*a = ( p2.getY() - p1.getY() )/( p2.getX() - p1.getX() );
 		b = -1;
-		c = -(a*p1.getX()) + p1.getY();// ou -(a*p2.getX()) + p2.getY(), ca revient au meme
+		c = -(a*p1.getX()) + p1.getY();// ou -(a*p2.getX()) + p2.getY(), ca revient au meme*/
 	}
 
 

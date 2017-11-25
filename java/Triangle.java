@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Triangle extends Polygone
 {
 	
