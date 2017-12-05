@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 
 /**
  * @brief Classe permettant de réaliser un affichage graphique du terrain de golf
- * 
- * Le terrain de golf est représenté graphiquement dans un panneau, les 
+ *
+ * Le terrain de golf est représenté graphiquement dans un panneau, les
  * cases étant numérotées à partir du coin supérieur gauche (0,0) jusqu'au
- * coin inférieur droit (Largeur,Hauteur) 
+ * coin inférieur droit (Largeur,Hauteur)
  */
 public final class Affichage extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -59,9 +59,26 @@ public final class Affichage extends JPanel {
 	 */
 	public void affichePolygone(Graphics g, Polygone p) {
 
+		Color c;
+		switch(p.getCol()){
+			case 'x' : c = Color.WHITE;
+				break;
+			case 'C' : c = new Color(131, 255, 51);
+				break;
+			case 'V' : c = new Color(55, 129, 7);
+				break;
+			case 'B' : c = new Color(19, 82, 248);
+				break;
+			case 'S' : c = new Color(21, 80, 0);
+				break;
+			case 'J' : c = new Color(255, 234, 127);
+				break;
+			default : c = null;
+		}
+
 		int X [] = new int[p.size()];
 		int Y [] = new int[p.size()];
-		g.setColor(Color.CYAN);
+		g.setColor(c);
 		for(int i = 0; i < p.size(); ++i)
 		{
 			X[i] = (int)(p.getPoint(i).getX()*10) * Constantes.nbPixels/10; //Ajustement des coordonnées à la taille de la fenetre
@@ -133,7 +150,7 @@ public final class Affichage extends JPanel {
 	 * @param tritri la liste des triangles à ajouter
 	 * @param seg la liste des segments à ajouter
 	 */
-	// TODO : modifier la signature au besoin 
+	// TODO : modifier la signature au besoin
 	@SuppressWarnings("unchecked")
 	public void rafraichir(ArrayList<Polygone> poly, ArrayList<Triangle> tritri, ArrayList<Segment> seg) {
 		polygones = (ArrayList<Polygone>) poly.clone(); // recopie la liste pour éviter des problèmes de synchronisation
@@ -163,7 +180,7 @@ public final class Affichage extends JPanel {
 				// }else{
 					affichePolygone(g,p);
 				//}
-				
+
 			}
 		}
 
@@ -181,7 +198,5 @@ public final class Affichage extends JPanel {
 		}
 
 
-	}	
+	}
 }
-
-		

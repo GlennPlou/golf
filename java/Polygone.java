@@ -119,7 +119,7 @@ public class Polygone{
             b = b && (poly2.sommets.contains(sommets.get(i)) && poly2.sommets.get(ind).equals(sommets.get(i)));
             ++i;
           }
-          return b & col = poly2.getCol();
+          return b && col == poly2.getCol();
         }
         return false;
       } else {
