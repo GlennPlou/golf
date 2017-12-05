@@ -16,9 +16,13 @@ public class Programme{
 
     ArrayList<Polygone> lis = ter.getList();
     ArrayList<Triangle> tri = new ArrayList<Triangle>();
+    tri = ter.listTri();
     ArrayList<Segment> seg = new ArrayList<Segment>();
 
-    panneau.rafraichir(lis, tri, seg);
 
+    //Polygone p = lis.get(2);
+    //tri = p.triangule();
+    lis = new ArrayList<Polygone>();
+    panneau.rafraichir(lis, tri, seg);
   }
 }

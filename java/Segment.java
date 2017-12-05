@@ -95,6 +95,17 @@ public class Segment{
   }
 
 
+  /**
+  * Calcul le point au milieu de this
+  * @return p Le point a égal distance de p1 et de p2
+  */
+  public Point milieu(){
+    double x = (p2.getX() - p1.getX()) / 2;
+    double y = (p2.getY() - p1.getY()) / 2;
+    Point p = new Point(x, y);
+    return p;
+  }
+
 
   /**
 	* Determine l'angle entre deux segments

@@ -119,7 +119,22 @@ public final class Affichage extends JPanel {
 
 		int X [] = new int[3];
 		int Y [] = new int[3];
-		Color c = new Color(199,159,75);
+		Color c;
+		switch(t.getCol()){
+			case 'x' : c = Color.WHITE;
+				break;
+			case 'C' : c = new Color(131, 255, 51);
+				break;
+			case 'V' : c = new Color(55, 129, 7);
+				break;
+			case 'B' : c = new Color(19, 82, 248);
+				break;
+			case 'S' : c = new Color(21, 80, 0);
+				break;
+			case 'J' : c = new Color(255, 234, 127);
+				break;
+			default : c = null;
+		}
 		g.setColor(c);
 		for(int i = 0; i < 3; ++i)
 		{

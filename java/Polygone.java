@@ -204,7 +204,7 @@ public class Polygone{
       j = (i+2) % k;
       oreille = (d.appartient(p.get(i)) == -1);
       while(oreille == true && (j+2) % k != i){
-        sj = new Segment(p.get(j), p.get((j+1) % k));
+        sj = new Segment(p.get(j%k), p.get((j+1) % k));
         oreille = oreille && (s.inter(sj) == null);
         ++j;
       }

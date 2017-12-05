@@ -55,4 +55,13 @@ public class Terrain{
 	public ArrayList<Polygone> getList(){
 		return polygones;
 	}
+
+
+	public ArrayList<Triangle> listTri(){
+		ArrayList<Triangle> res = new ArrayList<Triangle>();
+		for(Polygone p : polygones){
+			res.addAll(p.triangule());
+		}
+		return res;
+	}
 }
