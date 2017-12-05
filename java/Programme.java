@@ -9,6 +9,7 @@ import java.io.*;
 public class Programme{
   public static void main(String[] args){
 
+
     Terrain ter = new Terrain("DescriptionFIgureGolf2.txt");
 
     Affichage panneau = new Affichage();
@@ -20,7 +21,7 @@ public class Programme{
     ArrayList<Segment> seg = new ArrayList<Segment>();
 
 
-    //Polygone p = lis.get(2);
+    //Polygone p = lis.get(9);
     //tri = p.triangule();
     lis = new ArrayList<Polygone>();
     panneau.rafraichir(lis, tri, seg);

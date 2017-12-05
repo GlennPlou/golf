@@ -175,7 +175,6 @@ public class Polygone{
     while(clone.size() > 3){
       modulo = clone.size();
       ind = trouveOreille(clone);
-      System.out.println(ind);
       res.add(new Triangle(clone.get((ind-1+modulo) % modulo), clone.get(ind), clone.get((ind+1) % modulo), col ) );
       clone.remove(ind);
     }
@@ -198,12 +197,17 @@ public class Polygone{
     Segment s;
     Droite d;
     Segment sj;
+    Triangle t;
     while(i < k && oreille == false){
       d = new Droite(p.get((i-1+k) % k), p.get((i+1) % k) );
       s = new Segment(p.get((i-1+k) % k), p.get((i+1) % k));
+      t = new Triangle(p.get((i-1+k) % k),p.get(i), p.get((i+1) % k));
       j = (i+2) % k;
-      oreille = (d.appartient(p.get(i)) == -1);
-      while(oreille == true && (j+2) % k != i){
+      oreille = (d.appartient(p.get(i)) == -1);                              // p est sur le demi plan extérrieur du polygone donc le segment i-1 i+1 est a l'intérrieur du polygone
+      oreille = oreille && (t.appartient(p.get((i+2) % k)) == -1);
+      oreille = oreille && (t.appartient(p.get((i-2+k) % k)) == -1);
+      while(oreille == true && (j+2) % k != i){                             // on parcours tous les autre points
+        oreille = oreille && (t.appartient(p.get(j % k)) == -1);
         sj = new Segment(p.get(j%k), p.get((j+1) % k));
         oreille = oreille && (s.inter(sj) == null);
         ++j;
