@@ -10,13 +10,27 @@ public class Triangle extends Polygone{
   /* ------------------- Constrcteurs ---------------------- */
 
   /**
-  * Construit un Triangle
+  * Construit un Triangle incolore
   * @param a le premier point du Triangle
   * @param b le second point du Triangle
   * @param c le troisième point du Triangle
   */
   public Triangle(Point a, Point b, Point c){
     super();
+    ajoutPoint(a);
+    ajoutPoint(b);
+    ajoutPoint(c);
+  }
+
+  /**
+  * Construit un Triangle incolore
+  * @param a le premier point du Triangle
+  * @param b le second point du Triangle
+  * @param c le troisième point du Triangle
+  * @param col la couleur du triangle;
+  */
+  public Triangle(Point a, Point b, Point c, char col){
+    super(col);
     ajoutPoint(a);
     ajoutPoint(b);
     ajoutPoint(c);

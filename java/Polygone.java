@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Polygone{
   ArrayList<Point> sommets;
+  char col;
 
 
   /* -------------------- Constructeurs ------------------ */
@@ -17,6 +18,16 @@ public class Polygone{
   */
   public Polygone(){
     sommets = new ArrayList<Point>();
+    col = 'x';
+  }
+
+  /**
+  * Construit un polygone avec unhe couleur
+  * @param c couleur du polygone
+  */
+  public Polygone(char c){
+    sommets = new ArrayList<Point>();
+    col = c;
   }
 
 
@@ -35,6 +46,7 @@ public class Polygone{
           sommets.add(pt);
         }
     }
+    col = 'x';
   }
 
   /* ---------------------- Accesseurs ------------------------ */
@@ -55,6 +67,23 @@ public class Polygone{
   */
   public int size(){
     return sommets.size();
+  }
+
+  /**
+  * Accesseur de la couleur du polygone
+  * @return Le caractère désignant la couleur du poly
+  */
+  public char getCol(){
+    return col;
+  }
+
+  /* --------------------- Mutateurs ------------------------ */
+
+  /**
+  * Mutateur de la couleur du polygone
+  */
+  public void setCol(char c){
+    col = c;
   }
 
   /* --------------------- Méthodes ---------------------- */
@@ -90,7 +119,7 @@ public class Polygone{
             b = b && (poly2.sommets.contains(sommets.get(i)) && poly2.sommets.get(ind).equals(sommets.get(i)));
             ++i;
           }
-          return b;
+          return b & col = poly2.getCol();
         }
         return false;
       } else {
@@ -147,10 +176,10 @@ public class Polygone{
       modulo = clone.size();
       ind = trouveOreille(clone);
       System.out.println(ind);
-      res.add(new Triangle(clone.get((ind-1+modulo) % modulo), clone.get(ind), clone.get((ind+1) % modulo) ) );
+      res.add(new Triangle(clone.get((ind-1+modulo) % modulo), clone.get(ind), clone.get((ind+1) % modulo), col ) );
       clone.remove(ind);
     }
-    res.add(new Triangle(clone.get(0), clone.get(1), clone.get(2)));
+    res.add(new Triangle(clone.get(0), clone.get(1), clone.get(2), col));
     return res;
   }
 
