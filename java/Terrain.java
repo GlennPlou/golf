@@ -23,7 +23,7 @@ public class Terrain{
 			nblignes = Integer.parseInt(buff.readLine());
 			for(int i = 1; i <= nblignes; ++i){						// Les lignes ou sont définis les polygones
 				ligne = buff.readLine();
-				System.out.println(ligne);
+				//System.out.println(ligne);
 				b = false;
 				tmp = "";
 				p = new Polygone();
@@ -37,7 +37,6 @@ public class Terrain{
 						tmp = "";
 					} else if(b == false && ligne.charAt(j) == ')'){
 						y = Double.parseDouble(tmp);
-						System.out.println("x : " + x + " y : " + y);
 						p.ajoutPoint(new Point(x , y));
 					} else {
 						tmp = tmp + ligne.charAt(j);
