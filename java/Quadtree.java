@@ -116,23 +116,23 @@ public class Quadtree{
 		}else{
 			if(p.getX() <= origine.getX() + taille/2)//recherche zone 1 et 4
 			{
-				if(p.getY() >= origine.getX() + taille/2)//recherche zone 1
-				{
+				if(p.getY() >= origine.getY() + taille/2)//recherche zone 1
+				{System.out.println("RECHERCHE ZONE 1");
 					return noeuds.get(0).recherchePointQT(p);
 				}
 				else//recherche zone 4
-				{
+				{System.out.println("RECHERCHE ZONE 4");
 					return noeuds.get(3).recherchePointQT(p);
 				}
 			}
 			else// recherche zone 2 et 3
 			{
-				if(p.getY() >= origine.getX() + taille/2)//recherche zone 2
-				{
+				if(p.getY() >= origine.getY() + taille/2)//recherche zone 2
+				{System.out.println("RECHERCHE ZONE 2");
 					return noeuds.get(1).recherchePointQT(p);
 				}
 				else//recherche zone 3
-				{
+				{System.out.println("RECHERCHE ZONE 3");
 					return noeuds.get(2).recherchePointQT(p);
 				}
 			}
@@ -193,10 +193,10 @@ public class Quadtree{
 
 			// si on a déjà trop de triangles dans notre région, on découpe. De plus, on impose une limite de profondeur dans notre quadtree
 			if(triangles.size() > Constantes.T && taille > Constantes.nbCases/Math.pow(2, Constantes.profondeurMax) ){
-				Quadtree zone1 = new Quadtree(new Point(origine.getX(), origine.getY() + taille/2), taille/2, triangles);
-				Quadtree zone2 = new Quadtree(new Point(origine.getX() + taille/2, origine.getY() + taille/2), taille/2, triangles);
-				Quadtree zone3 = new Quadtree(new Point(origine.getX() + taille/2,origine.getY()), taille/2, triangles);
-				Quadtree zone4 = new Quadtree(new Point(origine.getX(),origine.getY()), taille/2, triangles);
+				Quadtree zone1 = new Quadtree(new Point(origine.getX(), origine.getY() + taille/2), taille/2);
+				Quadtree zone2 = new Quadtree(new Point(origine.getX() + taille/2, origine.getY() + taille/2), taille/2);
+				Quadtree zone3 = new Quadtree(new Point(origine.getX() + taille/2,origine.getY()), taille/2);
+				Quadtree zone4 = new Quadtree(new Point(origine.getX(),origine.getY()), taille/2);
 
 				noeuds.add(zone1);
 				noeuds.add(zone2);
@@ -204,9 +204,9 @@ public class Quadtree{
 				noeuds.add(zone4);
 
 				// on ajoute alors tous ces triangles dans ces nouveaux quadtree
-				// for(Quadtree n : noeuds){
-				// 	n.ajouterListe(triangles);
-				// }
+				for(Quadtree n : noeuds){
+					n.ajouterListe(triangles);
+				}
 				triangles.clear();
 
 			}

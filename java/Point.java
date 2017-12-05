@@ -7,7 +7,7 @@ public class Point{
   private double x;
   private double y;
 
-  /* ----------------- Constrcteur ------------------- */
+  /* ----------------- Constructeur ------------------- */
   /**
   * Construit un point.
   * @param x   valeur abscisse de ce point

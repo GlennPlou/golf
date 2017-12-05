@@ -25,5 +25,14 @@ public class Programme{
     //tri = p.triangule();
     //lis = new ArrayList<Polygone>();
     panneau.rafraichir(lis, tri, seg);
+
+    Quadtree Q = new Quadtree();
+    Q.ajouterListe(tri);
+
+    Point p = new Point(1,6);
+
+    Quadtree Qa = Q.recherchePointQT(p);
+    System.out.println(Qa.getTriangles());
+    System.out.println("Le point ets ici : " + Qa.RecherchePointTriangle(p));
   }
 }
