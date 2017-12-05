@@ -1,3 +1,14 @@
+/**
+ * @brief Classe permettant de réaliser un affichage graphique du terrain de golf
+ *
+ * Le terrain de golf est représenté graphiquement dans un panneau, les
+ * cases étant numérotées à partir du coin supérieur gauche (0,0) jusqu'au
+ * coin inférieur droit (Largeur,Hauteur)
+ *
+ * @author Glenn Plouhinec & Benoît Le Badezet
+ * @version 1.0
+ */
+
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -5,13 +16,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
-/**
- * @brief Classe permettant de réaliser un affichage graphique du terrain de golf
- *
- * Le terrain de golf est représenté graphiquement dans un panneau, les
- * cases étant numérotées à partir du coin supérieur gauche (0,0) jusqu'au
- * coin inférieur droit (Largeur,Hauteur)
- */
+
 public final class Affichage extends JPanel {
 	private static final long serialVersionUID = 1L;
 

@@ -1,3 +1,13 @@
+/**
+ * @brief Classe gérrant le terrain de golf
+ *
+ * Le terrain de golf est une liste de polygones
+ * ces polygones pouvent etre triangulé en listes de triangles
+ *
+ * @author Glenn Plouhinec & Benoît Le Badezet
+ * @version 1.0
+ */
+
 import java.io.*;
 import java.util.*;
 
@@ -5,7 +15,11 @@ public class Terrain{
 
 	private ArrayList<Polygone> polygones;
 
+	/* ----------------------------- Constructeur -------------------------------- */
 
+	/**
+	* Construit un terrain a partir d'un fichier dont le nom est passé en paramètre
+	*/
 	Terrain(String s){
 		polygones = new ArrayList<Polygone>();
 
@@ -51,11 +65,23 @@ public class Terrain{
 		}
 	}
 
+	/* ---------------------------------- Accésseurs ---------------------------------- */
+
+	/**
+	* Accesseur de la liste de polygones du Terrain
+	* @return polygone la liste de polygones
+	*/
 	public ArrayList<Polygone> getList(){
 		return polygones;
 	}
 
+	/* ------------------------------------ Méthode ------------------------------------- */
 
+
+	/**
+	* Triangulise tous les polygones du terrain
+	* @return res la liste de tous les triangles formant le terrain
+	*/
 	public ArrayList<Triangle> listTri(){
 		ArrayList<Triangle> res = new ArrayList<Triangle>();
 		for(Polygone p : polygones){
