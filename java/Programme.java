@@ -22,7 +22,7 @@ public class Programme{
 
     //Polygone p = lis.get(2);
     //tri = p.triangule();
-    lis = new ArrayList<Polygone>();
+    //lis = new ArrayList<Polygone>();
     panneau.rafraichir(lis, tri, seg);
   }
 }

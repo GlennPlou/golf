@@ -135,14 +135,15 @@ public final class Affichage extends JPanel {
 				break;
 			default : c = null;
 		}
-		g.setColor(c);
+		//g.setColor(c);
+		g.setColor(Color.RED);
 		for(int i = 0; i < 3; ++i)
 		{
 			X[i] = (int)(t.getPoint(i).getX()*10) * Constantes.nbPixels/10;  //Ajustement des coordonnées à la taille de la fenetre
 			Y[i] = haut - (int)(t.getPoint(i).getY()*10) * Constantes.nbPixels/10;  //Ajustement des coordonnées à la taille de la fenetre +  inversion de l'axe y
 		}
 		g.drawPolygon(X,Y,X.length); // dessine les contours du polygone
-		g.fillPolygon(X,Y,X.length); // remplissage du polygone
+		//g.fillPolygon(X,Y,X.length); // remplissage du polygone
 	}
 
 

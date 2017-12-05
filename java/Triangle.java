@@ -64,7 +64,7 @@ public class Triangle extends Polygone{
     Segment sbc = new Segment(getPoint(1), getPoint(2));
     Segment sca = new Segment(getPoint(2), getPoint(0));
 
-    boolean inte = (ab.appartient(p) == ab.appartient(getPoint(2)));       // Determine si le point est strictement a l'interrieur du triangle
+    boolean inte = (ab.appartient(p) == ab.appartient(getPoint(2)));       // Determine si le point est strictement a l'interieur du triangle
     inte = inte && (bc.appartient(p) == bc.appartient(getPoint(0)));
     inte = inte && (ca.appartient(p) == ca.appartient(getPoint(1)));
 

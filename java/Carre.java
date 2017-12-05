@@ -110,4 +110,29 @@ public class Carre extends Polygone
 		return (res >= 2);
 	}
 
+
+
+	/**
+  	* Determine si un triangle se trouve dans un carré, sans qu'il y ait d'intersection
+	* @param t le triangle à tester
+	* @return true si le triangle se situe entièrement dans le carré
+  	*/
+	public boolean TriangleDansCarre(Triangle t){
+		Point p = t.getPoint(0);
+
+		Point cA = getPoint(0);
+		Point cB = getPoint(1);
+		Point cC = getPoint(2);
+		Point cD = getPoint(3);
+
+
+		Triangle t1 = new Triangle(cA, cB, cD);
+		Triangle t2 = new Triangle(cC, cB, cD);
+
+		return ( !interTri(t) && (t1.appartient(p) != -1 || t2.appartient(p) != -1) );
+
+
+		
+	}
+
 }
