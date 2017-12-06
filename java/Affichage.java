@@ -26,6 +26,7 @@ public final class Affichage extends JPanel {
 	private ArrayList<Polygone> polygones; // note : le pas oublier le s
 	private ArrayList<Triangle> triangles;
 	private ArrayList<Segment> segments;
+	private ArrayList<Carre> carres;
 
 	/**
 	 * @brief Constructeur initialisant le panneau d'affichage
@@ -95,24 +96,23 @@ public final class Affichage extends JPanel {
 
 
 	/**
-	 * @brief Affiche un polygone
+	 * @brief Affiche un Carre
 	 * @param g Objet graphique permettant de dessiner dans le panneau
 	 * @param p Le polygone à afficher
 	 * @param c la couleur associée au polygone
 	 */
-	// public void affichePolygone(Graphics g, Polygone p, Color c) {
+	public void afficheCarre(Graphics g, Carre c) {
 
-	// 	int X [] = new int[p.size()];
-	// 	int Y [] = new int[p.size()];
-	// 	g.setColor(c);
-	// 	for(int i = 0; i < p.size(); ++i)
-	// 	{
-	// 		X[i] = (int)(p.getPoint(i).getX()*10) * Constantes.nbPixels/10;
-	// 		Y[i] = haut - (int)(p.getPoint(i).getY()*10) * Constantes.nbPixels/10;
-	// 	}
-	// 	g.drawPolygon(X,Y,X.length);
-	// 	g.fillPolygon(X,Y,X.length);
-	// }
+		int X [] = new int[4];
+		int Y [] = new int[4];
+		g.setColor(Color.BLUE);
+		for(int i = 0; i < 4; ++i)
+		{
+			X[i] = (int)(c.getPoint(i).getX()*10) * Constantes.nbPixels/10;
+			Y[i] = haut - (int)(c.getPoint(i).getY()*10) * Constantes.nbPixels/10;
+		}
+		g.drawPolygon(X,Y,X.length);
+	}
 
 
 	/**
@@ -173,10 +173,11 @@ public final class Affichage extends JPanel {
 	 */
 	// TODO : modifier la signature au besoin
 	@SuppressWarnings("unchecked")
-	public void rafraichir(ArrayList<Polygone> poly, ArrayList<Triangle> tritri, ArrayList<Segment> seg) {
+	public void rafraichir(ArrayList<Polygone> poly, ArrayList<Triangle> tritri, ArrayList<Segment> seg, ArrayList<Carre> car) {
 		polygones = (ArrayList<Polygone>) poly.clone(); // recopie la liste pour éviter des problèmes de synchronisation
 		triangles = (ArrayList<Triangle>) tritri.clone(); // recopie la liste pour éviter des problèmes de synchronisation
 		segments = (ArrayList<Segment>) seg.clone(); // recopie la liste pour éviter des problèmes de synchronisation
+		carres = (ArrayList<Carre>) car.clone(); // recopie la liste pour éviter des problèmes de synchronisation
 		repaint();
 	}
 
@@ -196,12 +197,7 @@ public final class Affichage extends JPanel {
 		// affichage des polygones
 		if(polygones != null){
 			for (Polygone p : polygones) {
-				// if(p instanceof Zone){
-				// 	affichePolygone(g,p, p.getColor());
-				// }else{
 					affichePolygone(g,p);
-				//}
-
 			}
 		}
 
@@ -215,6 +211,12 @@ public final class Affichage extends JPanel {
 		if(segments != null){
 			for (Segment s : segments) {
 				afficheSegment(g,s);
+			}
+		}
+
+		if(carres != null){
+			for (Carre c : carres) {
+				afficheCarre(g,c);
 			}
 		}
 

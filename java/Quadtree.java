@@ -31,7 +31,7 @@ public class Quadtree{
   	* @param o le point à l'origine (bas-gauche) du quadtree
   	* @param longueur la taille du terrain
   	* @param liste la liste des triangles obtenus par triangulation
-  	*/	
+  	*/
 	public Quadtree(Point o, double longueur, ArrayList<Triangle> liste){
 		origine = o;
 		taille = longueur;
@@ -44,7 +44,7 @@ public class Quadtree{
   	* Construit un Quadtree suite au découpage d'une région
   	* @param o le point à l'origine (bas-gauche) du quadtree
   	* @param longueur la taille du quadtree
-  	*/	
+  	*/
 	public Quadtree(Point o, double longueur){
 		origine = o;
 		taille = longueur;
@@ -90,6 +90,15 @@ public class Quadtree{
   	*/
 	public ArrayList<Triangle> getTriangles(){
 		return triangles;
+	}
+
+
+	/**
+  	* Accesseur de la zone carrée représentée par la région du quadtree
+  	* @return le carré formant le quadtree
+  	*/
+	public Carre getCarre(){
+		return new Carre(origine, taille);
 	}
 
 
@@ -170,12 +179,34 @@ public class Quadtree{
 	* @return le triangle qui contient le point recherché
   	*/
 	public Triangle RecherchePointTriangle(Point p){
+		Triangle tri;
+		int k = 0;
 		for(int i = 0; i < triangles.size() ; ++i) {
 			if(triangles.get(i).appartient(p) != -1){
-				return triangles.get(i);
+				tri = triangles.get(i);
+				k++;
 			}
 		}
-		return null;
+		//TODO : faire une fonction qui retourne le triangle avec la plus grande priorité, parmi une liste de triangles
+		// if(k != 1){
+		// 	int priorite = 0;
+		// 	for(int i = 0; i < triangles.size() ; ++i) {
+		// 		if(triangles.get(i).getCol == 'C'){
+		//
+		// 			return triangles.get(i);
+		// 		}else if(triangles.get(i).getCol == 'V'){
+		// 			return triangles.get(i);
+		// 		}else if(triangles.get(i).getCol == 'S'){
+		// 			return triangles.get(i);
+		// 		}else if(triangles.get(i).getCol == 'J'){
+		// 			return triangles.get(i);
+		// 		}else if(triangles.get(i).getCol == 'B'){
+		// 			return triangles.get(i);
+		// 		}
+		//
+		// 	}
+		}
+		return tri;
 	}
 
 
@@ -185,7 +216,7 @@ public class Quadtree{
   	*/
 	public void ajouter(Triangle t){
 		if(estFeuille()){ //si on se trouve dans un quadtree sans noeuds, on va potentiellement ajouter en découpant (nouveaux quadtrees)
-			
+
 			//on ajoute alors tous les triangles qui, soit intersectent le carré formé par la région, soit se trouvent entièrement dans la zone
 			if(TestRegionIntersecteTriangle(t) || TriangleDansRegion(t)){
 				triangles.add(t);
@@ -229,4 +260,3 @@ public class Quadtree{
 	}
 
 }
-
