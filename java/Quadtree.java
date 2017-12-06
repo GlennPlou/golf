@@ -175,38 +175,59 @@ public class Quadtree{
 
 	/**
   	* Recherche à quel triangle appartient le point retourné par recherchePointQT
-	* @param p le point à rechercher
-	* @return le triangle qui contient le point recherché
+		* @param p le point à rechercher
+		* @return le triangle qui contient le point recherché
   	*/
 	public Triangle RecherchePointTriangle(Point p){
-		Triangle tri;
-		int k = 0;
-		for(int i = 0; i < triangles.size() ; ++i) {
-			if(triangles.get(i).appartient(p) != -1){
-				tri = triangles.get(i);
-				k++;
+
+		ArrayList<Triangle> NvListeTri = new ArrayList<Triangle>();
+		Triangle tri;System.out.println("LA TAILLE EST : " + triangles.size());
+
+		for(int i = 0; i < triangles.size() ; ++i) {System.out.println("L'indice EST : " + i + " " + (triangles.get(i).appartient(p) != -1));
+			if(triangles.get(i).appartient(p) != -1){System.out.println("ajout");
+				NvListeTri.add(triangles.get(i));
 			}
 		}
-		//TODO : faire une fonction qui retourne le triangle avec la plus grande priorité, parmi une liste de triangles
-		// if(k != 1){
-		// 	int priorite = 0;
-		// 	for(int i = 0; i < triangles.size() ; ++i) {
-		// 		if(triangles.get(i).getCol == 'C'){
-		//
-		// 			return triangles.get(i);
-		// 		}else if(triangles.get(i).getCol == 'V'){
-		// 			return triangles.get(i);
-		// 		}else if(triangles.get(i).getCol == 'S'){
-		// 			return triangles.get(i);
-		// 		}else if(triangles.get(i).getCol == 'J'){
-		// 			return triangles.get(i);
-		// 		}else if(triangles.get(i).getCol == 'B'){
-		// 			return triangles.get(i);
-		// 		}
-		//
-		// 	}
+		if(NvListeTri.size() == 1){
+			tri = NvListeTri.get(0);
+		}else{
+			tri = prioriteMax(NvListeTri);
 		}
 		return tri;
+	}
+
+	/**
+		* Recherche le triangle avec la priorité maximale (en fonction de sa couleur) dans une liste de triangle donnée
+		* @param listeTri la liste des triangles à analyser
+		* @return le triangle ayant la plus grande priorité
+		*/
+	public Triangle prioriteMax(ArrayList<Triangle> listeTri){
+		int Tab [] = new int[listeTri.size()];
+
+		for(int i = 0; i < listeTri.size(); ++i){
+			switch(listeTri.get(i).getCol()){
+				case 'C' : Tab[i] = 5;
+					break;
+				case 'V' : Tab[i] = 4;
+					break;
+				case 'S' : Tab[i] = 3;
+					break;
+				case 'J' : Tab[i] = 2;
+					break;
+				case 'B' : Tab[i] = 1;
+					break;
+				default : Tab[i] = 0;
+			}
+		}
+		int max = 0;
+		int indice = 0;
+		for(int i = 0; i < listeTri.size(); ++i){
+			if(Tab[i] > max){
+				max = Tab[i];
+				indice = i;
+			}
+		}
+		return listeTri.get(indice);
 	}
 
 
