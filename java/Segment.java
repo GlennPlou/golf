@@ -73,9 +73,9 @@ public class Segment{
     Point inte = d1.inter(d2);
     if(appartient(inte) && s.appartient(inte)){
       if(p1.equals(inte)){
-        System.out.println("C'est p1");
+        //System.out.println("C'est p1");
       }else if (p2.equals(inte)){
-        System.out.println("c'est p2");
+        //System.out.println("c'est p2");
       }
       return inte;
     }

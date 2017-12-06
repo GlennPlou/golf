@@ -126,22 +126,22 @@ public class Quadtree{
 			if(p.getX() <= origine.getX() + taille/2)//recherche zone 1 et 4
 			{
 				if(p.getY() >= origine.getY() + taille/2)//recherche zone 1
-				{System.out.println("RECHERCHE ZONE 1");
+				{
 					return noeuds.get(0).recherchePointQT(p);
 				}
 				else//recherche zone 4
-				{System.out.println("RECHERCHE ZONE 4");
+				{
 					return noeuds.get(3).recherchePointQT(p);
 				}
 			}
 			else// recherche zone 2 et 3
 			{
 				if(p.getY() >= origine.getY() + taille/2)//recherche zone 2
-				{System.out.println("RECHERCHE ZONE 2");
+				{
 					return noeuds.get(1).recherchePointQT(p);
 				}
 				else//recherche zone 3
-				{System.out.println("RECHERCHE ZONE 3");
+				{
 					return noeuds.get(2).recherchePointQT(p);
 				}
 			}
@@ -181,10 +181,10 @@ public class Quadtree{
 	public Triangle RecherchePointTriangle(Point p){
 
 		ArrayList<Triangle> NvListeTri = new ArrayList<Triangle>();
-		Triangle tri;System.out.println("LA TAILLE EST : " + triangles.size());
+		Triangle tri;
 
-		for(int i = 0; i < triangles.size() ; ++i) {System.out.println("L'indice EST : " + i + " " + (triangles.get(i).appartient(p) != -1));
-			if(triangles.get(i).appartient(p) != -1){System.out.println("ajout");
+		for(int i = 0; i < triangles.size() ; ++i) {
+			if(triangles.get(i).appartient(p) != -1){
 				NvListeTri.add(triangles.get(i));
 			}
 		}
@@ -238,13 +238,21 @@ public class Quadtree{
 	public void ajouter(Triangle t){
 		if(estFeuille()){ //si on se trouve dans un quadtree sans noeuds, on va potentiellement ajouter en découpant (nouveaux quadtrees)
 
+			Point a = new Point(2.2,8);
+	    Point b = new Point(3.5,8);
+	    Point c = new Point(3,9);
+	    Triangle tc = new Triangle(c, a, b, 'C');
+			if(t.equals(tc))
+			{
+				System.out.println("tc est présent");
+			}
 			//on ajoute alors tous les triangles qui, soit intersectent le carré formé par la région, soit se trouvent entièrement dans la zone
 			if(TestRegionIntersecteTriangle(t) || TriangleDansRegion(t)){
 				triangles.add(t);
 			}
 
 			// si on a déjà trop de triangles dans notre région, on découpe. De plus, on impose une limite de profondeur dans notre quadtree
-			if(triangles.size() > Constantes.T && taille > Constantes.nbCases/Math.pow(2, Constantes.profondeurMax) ){
+			if(triangles.size() >= Constantes.T && taille > Constantes.nbCases/Math.pow(2, Constantes.profondeurMax) ){
 				Quadtree zone1 = new Quadtree(new Point(origine.getX(), origine.getY() + taille/2), taille/2);
 				Quadtree zone2 = new Quadtree(new Point(origine.getX() + taille/2, origine.getY() + taille/2), taille/2);
 				Quadtree zone3 = new Quadtree(new Point(origine.getX() + taille/2,origine.getY()), taille/2);

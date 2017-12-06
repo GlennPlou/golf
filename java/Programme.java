@@ -19,6 +19,16 @@ public class Programme{
     ArrayList<Triangle> tri = new ArrayList<Triangle>();
     tri = ter.listTri();
     ArrayList<Segment> seg = new ArrayList<Segment>();
+    ArrayList<Carre> car = new ArrayList<Carre>();
+
+
+
+    Point a = new Point(2.2,8);
+    Point b = new Point(3.5,8);
+    Point c = new Point(3,9);
+    Triangle tc = new Triangle(c, a, b, 'C');
+
+    System.out.println("tc : " + tri.contains(tc));
 
 
     //Polygone p = lis.get(9);
@@ -29,17 +39,19 @@ public class Programme{
     Quadtree Q = new Quadtree();
     Q.ajouterListe(tri);
 
-    Point p = new Point(3,3);
+    Point p = new Point(2.4,8.1);
 
     Quadtree Qa = Q.recherchePointQT(p);
     System.out.println(Qa.getTriangles());
-    System.out.println("Le point est ici : " + Qa.RecherchePointTriangle(p));
-
     Carre Ca = Qa.getCarre();
 
-    ArrayList<Carre> car = new ArrayList<Carre>();
     car.add(Ca);
     panneau.rafraichir(lis, tri, seg, car);
+
+    //System.out.println("Le point est ici : " + Qa.RecherchePointTriangle(p));
+
+
+    //panneau.rafraichir(lis, tri, seg, car);
 
   }
 }

@@ -118,10 +118,10 @@ public class Droite{
         k = b/ d.getB();
       }
       if(equals(d)){
-        System.out.println("Confondues !");
+        //System.out.println("Confondues !");
         return null;
       } else if ((k*d.getA() == a) && (k*d.getB() == b)){
-        System.out.println("Parallèles !");
+        //System.out.println("Parallèles !");
         return null;
       } else {
         double x;

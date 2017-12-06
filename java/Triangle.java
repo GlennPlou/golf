@@ -93,15 +93,15 @@ public class Triangle extends Polygone{
     Segment ca = new Segment(getPoint(2), getPoint(0));
 
     if(ab.inter(s) != null && !ab.inter(s).equals(s.getP2()) && !ab.inter(s).equals(getPoint(1)) ){
-      ab.inter(s).afficher();
+      //ab.inter(s).afficher();
       res = res + 1;
     }
     if(bc.inter(s) != null && !bc.inter(s).equals(s.getP2()) && !bc.inter(s).equals(getPoint(2))){
-      bc.inter(s).afficher();
+      //bc.inter(s).afficher();
       res = res + 1;
     }
     if(ca.inter(s) != null && !ca.inter(s).equals(s.getP2()) && !ca.inter(s).equals(getPoint(0))){
-      ca.inter(s).afficher();
+      //ca.inter(s).afficher();
       res = res + 1;
     }
     return res;
