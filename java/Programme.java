@@ -12,6 +12,8 @@ public class Programme{
 
     Terrain ter = new Terrain("DescriptionFIgureGolf2.txt");
 
+    Trace tra = ter.getTrac(0);
+
     Affichage panneau = new Affichage();
     Fenetre fenetre = new Fenetre(panneau);
 
@@ -20,6 +22,8 @@ public class Programme{
     tri = ter.listTri();
     ArrayList<Segment> seg = new ArrayList<Segment>();
     ArrayList<Carre> car = new ArrayList<Carre>();
+
+    lis = tra.getList();
 
 
 

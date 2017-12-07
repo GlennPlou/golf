@@ -15,6 +15,8 @@ public class Terrain{
 
 	private ArrayList<Polygone> polygones;
 
+	private ArrayList<Trace> traces;
+
 	/* ----------------------------- Constructeur -------------------------------- */
 
 	/**
@@ -22,19 +24,24 @@ public class Terrain{
 	*/
 	Terrain(String s){
 		polygones = new ArrayList<Polygone>();
+		traces = new ArrayList<Trace>();
 
 		try{
 			InputStream flux=new FileInputStream(s);
 			InputStreamReader lecture=new InputStreamReader(flux);
 			BufferedReader buff=new BufferedReader(lecture);
 			String ligne;
-			int nblignes, j;
+			int nblignes, j, numpoly, par;
 			boolean b;																		// determine si on lit le x ou le y
 			Polygone p;
 			double x = 0;
 			double y = 0;
 			String tmp;
-			nblignes = Integer.parseInt(buff.readLine());
+			ArrayList<Polygone> polys;
+			Point dep, arr;
+
+			/* Création de l'air de jeu */
+			nblignes = Integer.parseInt(buff.readLine());				// On récupère le nombre de lignes ou sont définis les polygones
 			for(int i = 1; i <= nblignes; ++i){						// Les lignes ou sont définis les polygones
 				ligne = buff.readLine();
 				//System.out.println(ligne);
@@ -59,6 +66,59 @@ public class Terrain{
 				p.setCol(ligne.charAt(ligne.length()-1));
 				polygones.add(p);
 			}
+
+			/* Création des tracés */
+			nblignes = Integer.parseInt(buff.readLine());			// On récupère le nombre de lignes ou sont définis les tracés
+			for(int i = 1; i <= nblignes; ++i){
+				ligne = buff.readLine();
+				polys = new ArrayList<Polygone>();
+				j = 0;
+				tmp = "";
+				while(ligne.charAt(j) != '('){									// On parcours les polygones du tracé n°i
+					if(ligne.charAt(j) == ','){
+						numpoly = Integer.parseInt(tmp);
+						polys.add(polygones.get(numpoly - 2));
+						tmp = "";
+					} else {
+						tmp = tmp + ligne.charAt(j);
+					}
+					++j;
+				}
+
+				++j;
+				tmp = "";
+				while(ligne.charAt(j) != ')'){									// On parcours les coordonnées du point de départ
+					if(ligne.charAt(j) == ','){
+						x = Double.parseDouble(tmp);
+						tmp = "";
+					} else {
+						tmp = tmp + ligne.charAt(j);
+					}
+					++j;
+				}
+				y = Double.parseDouble(tmp);
+				dep = new Point(x, y);
+
+				j = j+3;
+				tmp = "";
+				while(ligne.charAt(j) != ')'){									// On parcours les coordonnées du point d'arrivée
+					if(ligne.charAt(j) == ','){
+						x = Double.parseDouble(tmp);
+						tmp = "";
+					} else {
+						tmp = tmp + ligne.charAt(j);
+					}
+					++j;
+				}
+				y = Double.parseDouble(tmp);
+				arr = new Point(x, y);
+
+				par = Character.getNumericValue(ligne.charAt(ligne.length()-1));
+
+				traces.add(new Trace(i, polys, dep, arr, par));
+			}
+
+
 			buff.close();
 		}	catch (Exception e){
 			System.out.println(e.toString());
@@ -74,6 +134,15 @@ public class Terrain{
 	public ArrayList<Polygone> getList(){
 		return polygones;
 	}
+
+	/**
+	* Accesseur du ième tracé du terrain
+	* @return le ième tracé
+	*/
+	public Trace getTrac(int i){
+		return traces.get(i);
+	}
+
 
 	/* ------------------------------------ Méthode ------------------------------------- */
 
