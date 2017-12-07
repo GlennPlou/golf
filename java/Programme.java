@@ -10,9 +10,9 @@ public class Programme{
   public static void main(String[] args){
 
 
-    Terrain ter = new Terrain("DescriptionFIgureGolf2.txt");
+    Terrain ter = new Terrain("TestGolf3.txt");
 
-    Trace tra = ter.getTrac(0);
+    Trace tra = ter.getTrac(1);
 
     Affichage panneau = new Affichage();
     Fenetre fenetre = new Fenetre(panneau);
@@ -23,7 +23,7 @@ public class Programme{
     ArrayList<Segment> seg = new ArrayList<Segment>();
     ArrayList<Carre> car = new ArrayList<Carre>();
 
-    lis = tra.getList();
+    //lis = tra.getList();
 
 
 
