@@ -140,7 +140,7 @@ public class Polygone{
     int i;
 
     for(i = 0; i < sommets.size() - 1; ++i){
-      s = s + "Point " + (i+1) + " : " + getPoint(i).toString() + ",\n";
+      s = s + "Point " + (i+1) + " : " + getPoint(i).toString() + ", ";
     }
     s += "Point " + (i+1) + " : " + getPoint(i).toString() + ";\n";
     return s;
@@ -158,7 +158,7 @@ public class Polygone{
       System.out.print( "Point " + (i+1) + " : " + getPoint(i).toString());
     }
 
-    System.out.println("Point " + (i+1) + " : " + getPoint(i).toString());
+    System.out.println("Point " + (i+1) + ": " + getPoint(i).toString());
   }
 
 

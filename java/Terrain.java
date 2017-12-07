@@ -21,6 +21,7 @@ public class Terrain{
 
 	/**
 	* Construit un terrain a partir d'un fichier dont le nom est passé en paramètre
+	* Analyseur synaxique
 	*/
 	Terrain(String s){
 		polygones = new ArrayList<Polygone>();
