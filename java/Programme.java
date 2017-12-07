@@ -8,13 +8,16 @@ import java.io.*;
 
 public class Programme{
 
-	public static void cherchePoint(Quadtree q){
+	public static void cherchePoint(Quadtree q, Affichage panneau){
     	Scanner sb = new Scanner(System.in);
     	System.out.println("Saisissez la coordonée x : ");
     	double x = sb.nextDouble();
     	System.out.println("Saisissez la coordonée y : ");
     	double y = sb.nextDouble();
     	Point p = new Point(x,y);
+    	ArrayList<Point> pts = new ArrayList<Point>();
+    	pts.add(p);
+    	panneau.affichePoint(pts);
     	System.out.println("Le point se trouve dans ce triangle : " + q.recherchePointQT(p).RecherchePointTriangle(p));
     }
   public static void main(String[] args){
@@ -49,7 +52,7 @@ public class Programme{
     int k = 1;
     while(k != 0){
     	Scanner sa = new Scanner(System.in);
-		System.out.println("Veuillez saisir le chiffre correspondant à l'opération à effectuer \n(1 pour trianguler, 2 pour afficher le quadtree, 3 pour tester RecherchePointTriangle, 0 pour quitter) :");
+		System.out.println("Veuillez saisir le chiffre correspondant à l'opération à effectuer \n(1 pour trianguler, 2 pour afficher le quadtree, 3 pour tester RecherchePointTriangle, 4 pour réinitialiser l'affichage, 0 pour quitter) :");
 		k = sa.nextInt();
 
 		switch(k){
@@ -59,7 +62,10 @@ public class Programme{
 				break;
 			case 2 : panneau.afficheCar(car);
 				break;
-			case 3 : cherchePoint(Q);
+			case 3 : cherchePoint(Q, panneau);
+				break;
+			case 4 : panneau.efface();
+					 panneau.affichePoly(lis);
 				break;
 			default : System.out.println(k + " n'est pas une option");
 		}
