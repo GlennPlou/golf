@@ -15,9 +15,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+import java.awt.event.*;
 
 
-public final class Affichage extends JPanel {
+public final class Affichage extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	// Largeur et hauteur du panel graphique, calculés une seule fois à la construction
@@ -35,6 +36,11 @@ public final class Affichage extends JPanel {
 		larg = Constantes.nbCases*Constantes.nbPixels;
 		haut = Constantes.nbCases*Constantes.nbPixels;
 		setPreferredSize(new Dimension(larg,haut));
+
+		polygones = new ArrayList<Polygone>();
+		triangles = new ArrayList<Triangle>();
+		segments = new ArrayList<Segment>();
+		carres = new ArrayList<Carre>();
 	}
 
 	/**
@@ -105,7 +111,7 @@ public final class Affichage extends JPanel {
 
 		int X [] = new int[4];
 		int Y [] = new int[4];
-		g.setColor(Color.BLUE);
+		g.setColor(Color.BLACK);
 		for(int i = 0; i < 4; ++i)
 		{
 			X[i] = (int)(c.getPoint(i).getX()*10) * Constantes.nbPixels/10;
@@ -183,6 +189,48 @@ public final class Affichage extends JPanel {
 
 
 	/**
+	 * @brief Provoque le rafraichissement du panneau
+	 * @param poly la liste des polygones à ajouter
+	 * @param tritri la liste des triangles à ajouter
+	 * @param seg la liste des segments à ajouter
+	 */
+	// TODO : modifier la signature au besoin
+	@SuppressWarnings("unchecked")
+	public void affichePoly(ArrayList<Polygone> poly) {
+		polygones = (ArrayList<Polygone>) poly.clone(); // recopie la liste pour éviter des problèmes de synchronisation
+		repaint();
+	}
+
+
+	/**
+	 * @brief Provoque le rafraichissement du panneau
+	 * @param poly la liste des polygones à ajouter
+	 * @param tritri la liste des triangles à ajouter
+	 * @param seg la liste des segments à ajouter
+	 */
+	// TODO : modifier la signature au besoin
+	@SuppressWarnings("unchecked")
+	public void afficheTri(ArrayList<Triangle> tritri) {
+		triangles = (ArrayList<Triangle>) tritri.clone(); // recopie la liste pour éviter des problèmes de synchronisation
+		repaint();
+	}
+
+
+	/**
+	 * @brief Provoque le rafraichissement du panneau
+	 * @param poly la liste des polygones à ajouter
+	 * @param tritri la liste des triangles à ajouter
+	 * @param seg la liste des segments à ajouter
+	 */
+	// TODO : modifier la signature au besoin
+	@SuppressWarnings("unchecked")
+	public void afficheCar(ArrayList<Carre> car) {
+		carres = (ArrayList<Carre>) car.clone(); // recopie la liste pour éviter des problèmes de synchronisation
+		repaint();
+	}
+
+
+	/**
 	 * @brief Réaffiche le panneau à la demande
 	 * @param g Objet graphique permettant de dessiner dans le panneau
 	 */
@@ -219,7 +267,5 @@ public final class Affichage extends JPanel {
 				afficheCarre(g,c);
 			}
 		}
-
-
 	}
 }

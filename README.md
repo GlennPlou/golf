@@ -9,4 +9,4 @@ et Glenn Plouhinec
 
 
 compilation, exécution:
-javac java/*.java -d class/ && java -cp class Programme
+javac java/*.java -d class/ && java -cp class Programme DescriptionFIgureGolf2.txt

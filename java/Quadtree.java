@@ -289,4 +289,20 @@ public class Quadtree{
 		}
 	}
 
+	public ArrayList<Carre> getListeCarre(){
+		ArrayList<Carre> c = new ArrayList<Carre>();
+		getCarreRec(c);
+		return c;
+	}
+
+	public void getCarreRec(ArrayList<Carre> c){
+		if(!estFeuille()){
+			noeuds.get(0).getCarreRec(c);
+			noeuds.get(1).getCarreRec(c);
+			noeuds.get(2).getCarreRec(c);
+			noeuds.get(3).getCarreRec(c);
+		}
+		c.add(getCarre());		
+	}
+
 }

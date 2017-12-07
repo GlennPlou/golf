@@ -7,14 +7,25 @@ import java.util.*;
 import java.io.*;
 
 public class Programme{
+
+	public static void cherchePoint(Quadtree q){
+    	Scanner sb = new Scanner(System.in);
+    	System.out.println("Saisissez la coordonée x : ");
+    	double x = sb.nextDouble();
+    	System.out.println("Saisissez la coordonée y : ");
+    	double y = sb.nextDouble();
+    	Point p = new Point(x,y);
+    	System.out.println("Le point se trouve dans ce triangle : " + q.recherchePointQT(p).RecherchePointTriangle(p));
+    }
   public static void main(String[] args){
 
-    Scanner sc = new Scanner(System.in);
-    System.out.println("Veuillez saisir le fichier :");
-    String str = sc.nextLine();
+    //Scanner sc = new Scanner(System.in);
+    //System.out.println("Veuillez saisir le fichier :");
+    //String str = sc.nextLine();
+    //Terrain ter = new Terrain(str);
 
     
-    Terrain ter = new Terrain(str);
+    Terrain ter = new Terrain(args[0]);
 
     Trace tra = ter.getTrac(0);
 
@@ -22,28 +33,37 @@ public class Programme{
     Fenetre fenetre = new Fenetre(panneau);
 
     ArrayList<Polygone> lis = ter.getList();
+    panneau.affichePoly(lis);
+
     ArrayList<Triangle> tri = new ArrayList<Triangle>();
     tri = ter.listTri();
-    ArrayList<Segment> seg = new ArrayList<Segment>();
-    ArrayList<Carre> car = new ArrayList<Carre>();
-
-    //lis = tra.getList();
-
-
 
     Quadtree Q = new Quadtree(tri);
-    Point p = new Point(2.2,8);
-    Quadtree Qa = Q.recherchePointQT(p);
-    Carre Ca = Qa.getCarre();
-
-    car.add(Ca);
-    panneau.rafraichir(lis, tri, seg, car);
-    System.out.println(tri);
-
-    System.out.println("Le point est ici : " + Qa.RecherchePointTriangle(p));
+    ArrayList<Carre> car = new ArrayList<Carre>();
+    car = Q.getListeCarre();
 
 
-    //panneau.rafraichir(lis, tri, seg, car);
+    
+
+
+    int k = 1;
+    while(k != 0){
+    	Scanner sa = new Scanner(System.in);
+		System.out.println("Veuillez saisir le chiffre correspondant à l'opération à effectuer \n(1 pour trianguler, 2 pour afficher le quadtree, 3 pour tester RecherchePointTriangle, 0 pour quitter) :");
+		k = sa.nextInt();
+
+		switch(k){
+			case 0 : fenetre.dispose();
+				break;
+			case 1 : panneau.afficheTri(tri);
+				break;
+			case 2 : panneau.afficheCar(car);
+				break;
+			case 3 : cherchePoint(Q);
+				break;
+			default : System.out.println(k + " n'est pas une option");
+		}
+    }
 
   }
 }
