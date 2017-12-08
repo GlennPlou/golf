@@ -50,11 +50,12 @@ public class Segment{
   public boolean appartient(Point p){
     if(p != null){
       Droite d = new Droite(p1, p2);
+      double eps = 0.0001;                                                      // Epsilon afin d'éviter l'erreur sur les valeur arrondies
       return ( d.appartient(p) == 0
-			   && p.getX() <= Math.max(p1.getX(), p2.getX())
-			   && p.getX() >= Math.min(p1.getX(), p2.getX())
-			   && p.getY() <= Math.max(p1.getY(), p2.getY())
-			   && p.getY() >= Math.min(p1.getY(), p2.getY()) );
+			   && p.getX() <= (Math.max(p1.getX(), p2.getX()) + eps )
+			   && p.getX() >= (Math.min(p1.getX(), p2.getX()) - eps )
+			   && p.getY() <= (Math.max(p1.getY(), p2.getY()) + eps )
+			   && p.getY() >= (Math.min(p1.getY(), p2.getY()) - eps ) );
     }
     return false;
   }

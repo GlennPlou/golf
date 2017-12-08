@@ -240,6 +240,8 @@ public class Quadtree{
 				indice = i;
 			}
 		}
+		System.out.println(indice);
+		System.out.println(listeTri.size());
 		return listeTri.get(indice);
 	}
 
@@ -302,7 +304,7 @@ public class Quadtree{
 			noeuds.get(2).getCarreRec(c);
 			noeuds.get(3).getCarreRec(c);
 		}
-		c.add(getCarre());		
+		c.add(getCarre());
 	}
 
 }
