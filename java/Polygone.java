@@ -103,6 +103,7 @@ public class Polygone{
   * @return    true si cette objet est un polygone et que ce polygone est identique à this
   * @return    false si cet objet n'est pas un polygone ou si c'est un polygone différent
   */
+  @Override
   public boolean equals(Object o){
     if (o instanceof Polygone){
       Polygone poly2 = (Polygone)o;
@@ -166,6 +167,7 @@ public class Polygone{
   * Triangule le polygone this
   * @return l'arrylist de tous les Triangles qui forment le polygone
   */
+  @SuppressWarnings("unchecked")
   public ArrayList<Triangle> triangule(){
     ArrayList<Triangle> res = new ArrayList<Triangle>();
     Object o = sommets.clone();

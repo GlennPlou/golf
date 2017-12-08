@@ -164,6 +164,7 @@ public class Droite{
   * @return    true si cette objet est une droite et que cette droite est identique à this
   * @return    false si cet objet n'est pas une droite ou si c'est une droite différente
   */
+  @Override
   public boolean equals(Object o){
     if(o instanceof Droite){
       Droite d = (Droite)o ;

@@ -85,6 +85,7 @@ public class Point{
   * @return    true si cette objet est un point et que ce point est identique à this
   * @return    false si cet objet n'est pas un point ou si c'est un point différent
   */
+  @Override
   public boolean equals(Object o){
     if(o instanceof Point){
       Point p = (Point)o ;
