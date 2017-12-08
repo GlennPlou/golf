@@ -1,0 +1,21 @@
+Procédure CalculCoefficientsDroite(Point p1, Point p2, Droite d)
+Début
+	Précondition : p1 != p2
+
+  	d.a <-- (p2.getY() - p1.getY()) * (-1);
+  	Si d.a = -0.0 alors 
+  		d.a <-- 0;
+
+  	d.b <-- p2.getX() - p1.getX();
+  	Si d.b = -0.0 alors 
+  		d.b <-- 0;
+
+  	d.c <-- (p1.getX()*a + p1.getY()*b) * (-1);
+  	Si d.c = -0.0 alors 
+  		d.c <-- 0;
+Fin
+
+
+
+
+

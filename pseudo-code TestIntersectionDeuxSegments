@@ -1,0 +1,24 @@
+Fonction TestIntersectionDeuxSegments(Segment s1, Segment s2): Point
+Début
+
+    Droite d1 <-- new Droite(s1.p1, s1.p2);
+    Droite d2 <-- new Droite(s2.p1, s2.p2);
+    Point intersection <-- d1.intersection(d1);
+
+    Si s1.appartient(intersection) ET s2.appartient(intersection) alors
+      Si s1.p1 = intersection alors
+        Ecrire(C'est p1);
+      Sinon si s1.p2 = intersection alors
+        Ecrire(C'est p2);
+      Fin si
+      retourner intersection;
+    Fin si
+
+    retourner null;
+
+Fin
+
+
+
+
+

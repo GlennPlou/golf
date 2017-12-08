@@ -1,0 +1,28 @@
+Fonction TestRegionIntersecteTriangle(Triangle t, Quadtree arbre): boolean
+Début
+	Carre c  <-- new Carre(arbre.origine, arbre.taille);
+	return TriangleIntersecteCarre(t, c);
+Fin
+
+Fonction TriangleIntersecteCarre(Triangle t, Carre c): boolean
+Début
+	Segment ab <-- new Segment(c.getPoint(0), c.getPoint(1));
+	Segment bc <-- new Segment(c.getPoint(1), c.getPoint(2));
+	Segment cd <-- new Segment(c.getPoint(2), c.getPoint(3));
+	Segment da <-- new Segment(c.getPoint(3), c.getPoint(0));
+
+	res <-- 0;
+	res <-- res + TriangleIntersectionSegment(ab, t);
+	res <-- res + TriangleIntersectionSegment(bc, t);
+	res <-- res + TriangleIntersectionSegment(cd, t);
+	res <-- res + TriangleIntersectionSegment(da, t);
+
+	retourner res >= 2;
+Fin
+
+
+
+
+
+
+

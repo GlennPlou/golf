@@ -1,0 +1,50 @@
+Procédure ConstructionQT(ArrayList<Triangle> liste, Quadtree arbre)
+Début
+    arbre.origine <-- new Point(0,0);
+    arbre.taille <-- Constantes.nbCases;
+    arbre.noeuds <-- new ArrayList<Quadtree>();
+    arbre.triangles <-- new ArrayList<Triangle>();
+    arbre.ajouterListeTriangle(liste, arbre);
+Fin
+
+Procédure ajouterListeTriangle(ArrayList<Triangle> liste, Quadtree arbre)
+Début
+    Pour i allant de 1 à liste.size() faire
+        arbre.ajouterTriangle(liste.get(i), arbre);
+    Fin Pour
+Fin
+
+Procédure ajouter(Triangle t, Quadtree arbre)
+Début
+    Si arbre.estFeuille() alors
+
+        Si arbre.TestRegionIntersecteTriangle(t, arbre) OU arbre.TriangleDansRegion(t, arbre) alors
+            arbre.triangles.add(t);
+        Fin si
+
+        Si arbre.triangles.size() >= NbTrianglesMax ET arbre.profondeur < ProfondeurMax alors
+            X <-- arbre.origine.getX();
+            Y <-- arbre.origine.getY();
+            nvTaille <-- arbre.taille/2;
+
+            Quadtree zone1 <-- new Quadtree(new Point(X, Y + nvTaille), nvTaille, arbre.triangles);
+            Quadtree zone2 <-- new Quadtree(new Point(X + nvTaille, Y + nvTaille), nvTaille, arbre.triangles);
+            Quadtree zone3 <-- new Quadtree(new Point(X + nvTaille, Y), nvTaille, arbre.triangles);
+            Quadtree zone4 <-- new Quadtree(new Point(X, Y), nvTaille, arbre.triangles);
+            arbre.noeuds.add(zone1);
+            arbre.noeuds.add(zone2);
+            arbre.noeuds.add(zone3);
+            arbre.noeuds.add(zone4);
+
+            arbre.triangles.clear();
+        Fin Si
+    Sinon
+        Pour tout Quadtree q de arbre.noeuds faire
+            q.ajouterTriangle(t);
+        Fin Pour
+    Fin Si
+Fin
+
+
+
+

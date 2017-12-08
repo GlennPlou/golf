@@ -1,0 +1,38 @@
+Fonction TestTriangleContientPoint(Point p, Triangle t): entier
+Début
+	Droite ab <-- new Droite(t.getPoint(0), t.getPoint(1));
+	Droite bc <-- new Droite(t.getPoint(1), t.getPoint(2));
+	Droite ca <-- new Droite(t.getPoint(2), t.getPoint(0));
+
+	Segment AB <-- new Segment(t.getPoint(0), t.getPoint(1));
+	Segment BC <-- new Segment(t.getPoint(1), t.getPoint(2));
+	Segment CA <-- new Segment(t.getPoint(2), t.getPoint(0));
+
+	//Détermine si le point est strictement à l'intérieur du triangle
+	boolean inter <-- ab.PointAppartientDroite(p) = ab.PointAppartientDroite(t.getPoint(2));
+	inter <-- inter ET bc.PointAppartientDroite(p) = bc.PointAppartientDroite(t.getPoint(0));
+	inter <-- inter ET ca.PointAppartientDroite(p) = ca.PointAppartientDroite(t.getPoint(0));
+
+	Si p = t.getPoint(0) OU p = t.getPoint(1) OU p = t.getPoint(2) alors
+		Ecrire(Le point est sur un sommet);
+		retourner 0;
+	Sinon si AB.PointAppartientSegment(p) OU BC.PointAppartientSegment(p) OU CA.PointAppartientSegment(p) alors
+		Ecrire(Le point est sur un segment);
+		retourner 1;
+	Sinon si inter alors
+		Ecrire(Le point est dans le triangle);
+		retourner 2;
+	Sinon
+		Ecrire(Le point est en dehors du triangle);
+		retourner -1;
+	Fin si
+Fin
+
+
+
+
+
+
+
+
+

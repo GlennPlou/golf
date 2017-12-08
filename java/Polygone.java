@@ -1,6 +1,6 @@
 /**
  * Classe Polygone
- * @author Glenn Plouhinec & Benoît Le Badezet
+ * @author Glenn Plouhinec & Bob le Bricoleur (dit Badezet Le Benoît)
  * @version 1.0
  */
 
