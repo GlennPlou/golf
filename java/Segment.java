@@ -84,6 +84,28 @@ public class Segment{
   }
 
 
+  /**
+  * Test si deux segment s'intersectent
+  * @param s   Un segment
+  * @return   inte : le point de l'Intersection
+  * @return   null si ces deux segment ne s'intersectent pas
+  */
+  public Point TestIntersectionDeuxSegments(Segment s){
+    Droite d1 = new Droite(p1, p2);
+    Droite d2 = new Droite(s.getP1(), s.getP2());
+    Point inte = d1.inter(d2);
+    if(appartient(inte) && s.appartient(inte)){
+      if(p1.equals(inte)){
+        System.out.println("C'est p1");
+      }else if (p2.equals(inte)){
+        System.out.println("C'est p2");
+      }
+      return inte;
+    }
+    return null;
+  }
+
+
 
   /**
   * Calcul la longueur de this

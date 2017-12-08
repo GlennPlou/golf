@@ -81,6 +81,43 @@ public class Triangle extends Polygone{
 
 
   /**
+  * determine la position d'une point p vis a vis d'un triangle (this)
+  * @param p un Point
+  * @return 0 si p est un sommet du Triangle
+  * @return 1 si p est sur un des segment du Triangle
+  * @return 2 si p est dans le Triangle
+  * @return -1 si p n'est pas dans le triangle
+  */
+  public int TestTriangleContientPoint(Point p){
+    Droite ab = new Droite(getPoint(0), getPoint(1));
+    Droite bc = new Droite(getPoint(1), getPoint(2));
+    Droite ca = new Droite(getPoint(2), getPoint(0));
+
+    Segment sab = new Segment(getPoint(0), getPoint(1));
+    Segment sbc = new Segment(getPoint(1), getPoint(2));
+    Segment sca = new Segment(getPoint(2), getPoint(0));
+
+    boolean inte = (ab.appartient(p) == ab.appartient(getPoint(2)));       // Determine si le point est strictement a l'interieur du triangle
+    inte = inte && (bc.appartient(p) == bc.appartient(getPoint(0)));
+    inte = inte && (ca.appartient(p) == ca.appartient(getPoint(1)));
+
+    if(p.equals(getPoint(0)) || p.equals(getPoint(1)) || p.equals(getPoint(2))){
+      System.out.println("Le point est sur un sommet");
+      return 0;
+    } else if(sab.appartient(p) || sbc.appartient(p) || sca.appartient(p)){
+      System.out.println("Le point est sur un segment");
+      return 1;
+    } else if(inte){
+      System.out.println("Le point est dans le triangle");
+      return 2;
+    } else {
+      System.out.println("Le point est en dehors du triangle");
+      return -1;
+    }
+  }
+
+
+  /**
   * determine le nombre d'intersections avec un segment avec une certaine contrainte afin de conpter correctement les intersections entre triangle et carré
   * @param s un Segment
   * @return res le nombre d'intersection avec les côtés du Triangle

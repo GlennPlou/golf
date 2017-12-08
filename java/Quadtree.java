@@ -27,9 +27,9 @@ public class Quadtree{
 
 
 	/**
-  	* Construit un Quadtree vide
+  	* Construit un Quadtree à partir d'un ArrayList de triangles
   	*/
-	public Quadtree(ArrayList<Triangle> liste){
+	public void ConstructionQT(ArrayList<Triangle> liste){
 		origine = new Point(0,0);
 		taille = Constantes.nbCases;
 		noeuds = new ArrayList<Quadtree>();
@@ -132,7 +132,7 @@ public class Quadtree{
   	* @param p le point à rechercher
 	* @return une feuille du quadtree représentant la région qui contient le point
   	*/
-	public Quadtree recherchePointQT(Point p){
+	public Quadtree RecherchePointQT(Point p){
 		if(estFeuille()){
 			return this;
 		}else{
@@ -140,22 +140,22 @@ public class Quadtree{
 			{
 				if(p.getY() >= origine.getY() + taille/2)//recherche zone 1
 				{//System.out.println("RECHERCHE ZONE 1");
-					return noeuds.get(0).recherchePointQT(p);
+					return noeuds.get(0).RecherchePointQT(p);
 				}
 				else//recherche zone 4
 				{//System.out.println("RECHERCHE ZONE 4");
-					return noeuds.get(3).recherchePointQT(p);
+					return noeuds.get(3).RecherchePointQT(p);
 				}
 			}
 			else// recherche zone 2 et 3
 			{
 				if(p.getY() >= origine.getY() + taille/2)//recherche zone 2
 				{//System.out.println("RECHERCHE ZONE 2");
-					return noeuds.get(1).recherchePointQT(p);
+					return noeuds.get(1).RecherchePointQT(p);
 				}
 				else//recherche zone 3
 				{//System.out.println("RECHERCHE ZONE 3");
-					return noeuds.get(2).recherchePointQT(p);
+					return noeuds.get(2).RecherchePointQT(p);
 				}
 			}
 		}

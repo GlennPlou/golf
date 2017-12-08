@@ -43,6 +43,24 @@ public class Droite{
     if(c == -0.0) c = 0;
   }
 
+  /**
+  * Construit une droite
+  * @param p1   Un point qui est sur la droite
+  * @param p2   Un second point sur la droite
+  */
+  public void CalculCoefficientsDroite(Point p1, Point p2){
+    assert(!p1.equals(p2));         // assertion pour avoir deux point différents sinon on ne peut pas avoir de droite
+
+    a = (p2.getY() - p1.getY()) * (-1);
+    if(a == -0.0) a = 0;
+
+    b = p2.getX() - p1.getX();
+    if(b == -0.0) b = 0;
+
+    c = (p1.getX()*a + p1.getY()*b) * (-1);
+    if(c == -0.0) c = 0;
+  }
+
   /* ----------------------- Accesseurs ------------------- */
 
   /**

@@ -152,7 +152,7 @@ public class Terrain{
 	* Triangulise tous les polygones du terrain
 	* @return res la liste de tous les triangles formant le terrain
 	*/
-	public ArrayList<Triangle> listTri(){
+	public ArrayList<Triangle> TriangulationTerrain(){
 		ArrayList<Triangle> res = new ArrayList<Triangle>();
 		for(Polygone p : polygones){
 			res.addAll(p.triangule());
