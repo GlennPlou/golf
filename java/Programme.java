@@ -18,6 +18,7 @@ public class Programme{
     	ArrayList<Point> pts = new ArrayList<Point>();
     	pts.add(p);
     	panneau.affichePoint(pts);
+			System.out.println("Le point se trouve dans ce triangle : " + q.recherchePointQT(p).getCarre());
     	System.out.println("Le point se trouve dans ce triangle : " + q.recherchePointQT(p).RecherchePointTriangle(p));
     }
   public static void main(String[] args){
@@ -27,16 +28,19 @@ public class Programme{
     //String str = sc.nextLine();
     //Terrain ter = new Terrain(str);
 
-    
+
     Terrain ter = new Terrain(args[0]);
 
-    Trace tra = ter.getTrac(0);
+		Trace tra;
 
     Affichage panneau = new Affichage();
     Fenetre fenetre = new Fenetre(panneau);
 
     ArrayList<Polygone> lis = ter.getList();
     panneau.affichePoly(lis);
+
+		ArrayList<Polygone> trou = new ArrayList();
+
 
     ArrayList<Triangle> tri = new ArrayList<Triangle>();
     tri = ter.listTri();
@@ -46,13 +50,12 @@ public class Programme{
     car = Q.getListeCarre();
 
 
-    
 
 
     int k = 1;
     while(k != 0){
     	Scanner sa = new Scanner(System.in);
-		System.out.println("Veuillez saisir le chiffre correspondant à l'opération à effectuer \n(1 pour trianguler, 2 pour afficher le quadtree, 3 pour tester RecherchePointTriangle, 4 pour réinitialiser l'affichage, 0 pour quitter) :");
+		System.out.println("Veuillez saisir le chiffre correspondant à l'opération à effectuer \n(1 pour trianguler, 2 pour afficher le quadtree, 3 pour tester RecherchePointTriangle,4 pour afficher le premier tracé, 5 pour afficher le second tracé (si il existe), 6 pour réinitialiser l'affichage, 0 pour quitter) :");
 		k = sa.nextInt();
 
 		switch(k){
@@ -64,9 +67,16 @@ public class Programme{
 				break;
 			case 3 : cherchePoint(Q, panneau);
 				break;
-			case 4 : panneau.efface();
-					 panneau.affichePoly(lis);
+			case 4 : tra = ter.getTrac(k-4);
+					 trou = tra.getList();
+					 panneau.affichePoly(trou);
 				break;
+			case 5 : tra = ter.getTrac(k-4);
+					 trou = tra.getList();
+					 panneau.affichePoly(trou);
+				break;
+			case 6 : panneau.efface();
+					 panneau.affichePoly(lis);
 			default : System.out.println(k + " n'est pas une option");
 		}
     }
