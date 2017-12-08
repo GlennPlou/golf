@@ -14,7 +14,7 @@ Début
     Fin Pour
 Fin
 
-Procédure ajouter(Triangle t, Quadtree arbre)
+Procédure ajouterTriangle(Triangle t, Quadtree arbre)
 Début
     Si arbre.estFeuille() alors
 
